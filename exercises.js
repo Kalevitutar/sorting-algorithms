@@ -5,6 +5,16 @@ function bubbleSort(arr) {
 
     // TODO: Implement the Bubble Sort algorithm
 
+    for (let i = 0; i < n; i++) {
+        for (let j = 0; j < n; j++) {
+            if (arr[j] > arr[j + 1]) {
+                let holder = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = holder;
+            }
+        }
+    }
+
     return arr;
 }
 
@@ -13,6 +23,7 @@ const unsortedArray = [64, 34, 25, 12, 22, 11, 90];
 console.log("Unsorted Array:", unsortedArray);
 
 // TODO: Call the bubbleSort function to sort the array
+bubbleSort(unsortedArray);
 
 console.log("Sorted Array:", unsortedArray);
 
@@ -27,8 +38,21 @@ function selectionSortWords(arr) {
 
     for (let i = 0; i < n - 1; i++) {
         // TODO: Find the index of the minimum word in the unsorted part
+        let earlierIndex = i;
+
+        for (let j = 0; j < n; j++) {
+            if (arr[j] < arr[i]) {
+                earlierIndex = j
+            }
 
         // TODO: Swap the minimum word with the first unsorted word
+
+            if (earlierIndex !== i) {
+                let holder = arr[i];
+                arr[i] = arr[j];
+                arr[j] = holder;
+            }
+        }
     }
 
     return arr;
@@ -39,6 +63,8 @@ const unsortedWords = ["banana", "apple", "grape", "orange", "kiwi"];
 console.log("Unsorted Words:", unsortedWords);
 
 // TODO: Call the selectionSortWords function to sort the array
+
+selectionSortWords(unsortedWords);
 
 console.log("Sorted Words:", unsortedWords);
 
@@ -53,13 +79,23 @@ function insertionSortWords(arr) {
 
     // TODO: Implement the Insertion Sort algorithm
 
+    for (let i = 1; i < n; i++) {
+        let checkingValue = arr[i];
+        let j;
+        for (j = i - 1; j >= 0 && arr[j] > checkingValue; j--) {
+            arr[j + 1] = arr[j];
+        }
+        arr[j + 1] = checkingValue;
+    }
     return arr;
+    
 }
 
 // Exercise: Sort the array using the insertionSortWords function
 const unsortedNewWords = ["javascript", "python", "c++", "ruby", "go"];
-console.log("Unsorted Words:", unsortedWords);
+console.log("Unsorted Words:", unsortedNewWords);
 
 // TODO: Call the insertionSortWords function to sort the array
+insertionSortWords(unsortedNewWords);
 
-console.log("Sorted Words:", unsortedWords);
+console.log("Sorted Words:", unsortedNewWords);
